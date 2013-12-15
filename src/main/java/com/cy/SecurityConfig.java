@@ -11,24 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 
-class User {
-
-}
-
-class MyAuthenticationProvider implements AuthenticationProvider {
-
-    @Override
-    public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        authentication.getCredentials().
-        return null;
-    }
-
-    @Override
-    public boolean supports(Class<?> aClass) {
-        return User.class.equals(aClass);
-    }
-}
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -45,7 +27,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(new MyAuthenticationProvider());
         auth
             .inMemoryAuthentication()
                 .withUser("user")
